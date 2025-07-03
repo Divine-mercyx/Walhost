@@ -3,7 +3,7 @@ const multipart = require('@fastify/multipart');
 const {handleFileUploadRequest} = require("./routes/route");
 const dotenv = require('dotenv');
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 fastify.register(multipart);
 fastify.post("/upload", handleFileUploadRequest);
 
