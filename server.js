@@ -9,7 +9,7 @@ fastify.post("/upload", handleFileUploadRequest);
 
 const start = async () => {
     try {
-        await fastify.listen({ port });
+        await fastify.listen({ port, host: '0.0.0.0' });
         fastify.log.info(`Server listening on http://localhost:${port}`);
     } catch (err) {
         fastify.log.error(err);
