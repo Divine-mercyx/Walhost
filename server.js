@@ -1,11 +1,13 @@
 const fastify = require('fastify')({ logger: true });
 const multipart = require('@fastify/multipart');
-const {handleFileUploadRequest} = require("./routes/route");
+const {handleFileUploadRequest, handleFileGetting} = require("./routes/route");
 const dotenv = require('dotenv');
-dotenv.config();
 const port = process.env.PORT || 3000;
+
+dotenv.config();
 fastify.register(multipart);
 fastify.post("/upload", handleFileUploadRequest);
+fastify.get('/retrieve/:blobId', handleFileGetting);
 
 const start = async () => {
     try {

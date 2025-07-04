@@ -89,6 +89,23 @@ async function processUpload(testChunks, walrusUploadAddress, reply) {
     }
 }
 
+async function handleFileGetting(request, reply) {
+    const { blobId } = request.params;
+
+    try {
+        const response = await axios.get(walrusAggregator.concat(blobId), {
+            responseType: 'arraybuffer',
+        });
+        return reply
+            .header('Content-Type', 'application/octet-stream')
+            .send(response.data);
+    } catch (error) {
+        reply
+            .status(404)
+            .send({ error: 'File not found' });
+    }
+}
+
 
 function extractBlobIdFrom(response) {
     if (response.alreadyCertified) return response.alreadyCertified.blobId;
@@ -96,5 +113,6 @@ function extractBlobIdFrom(response) {
 }
 
 module.exports = {
-    handleFileUploadRequest
+    handleFileUploadRequest,
+    handleFileGetting
 }
