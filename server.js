@@ -2,6 +2,7 @@ const fastify = require('fastify')({ logger: true });
 const multipart = require('@fastify/multipart');
 const {handleFileUploadRequest, handleFileGetting} = require("./routes/route");
 const dotenv = require('dotenv');
+const cors = require('@fastify/cors'); // ADD THIS
 const port = process.env.PORT || 3000;
 
 dotenv.config();
