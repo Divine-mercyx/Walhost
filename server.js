@@ -10,7 +10,7 @@ dotenv.config();
 fastify.register(cors, {
   origin: true, // Allows all origins (for development)
   // For production, specify allowed origins:
-  origin: ['http://localhost:3000', 'https://usemylo.xyz/'],
+  origin: ['http://localhost:3000', 'https://usemylo.xyz'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 });
