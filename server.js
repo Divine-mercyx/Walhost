@@ -5,6 +5,16 @@ const dotenv = require('dotenv');
 const port = process.env.PORT || 3000;
 
 dotenv.config();
+
+fastify.register(cors, {
+  origin: true, // Allows all origins (for development)
+  // For production, specify allowed origins:
+  origin: ['http://localhost:3000', 'https://usemylo.xyz/']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+});
+
+
 fastify.register(multipart);
 fastify.post("/upload", handleFileUploadRequest);
 fastify.get('/retrieve/:blobId', handleFileGetting);
